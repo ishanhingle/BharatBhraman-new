@@ -48,7 +48,6 @@ app.engine('ejs',ejsMate);
  const sessionConfig={
      secret:'ishanisbest',
      resave:false,
-     store,
      saveUninitialized:true,
      Cookie:{
          expires:Date.now()+1000*60*60*24*7,
@@ -100,9 +99,12 @@ app.engine('ejs',ejsMate);
      next(new ExpressError('page not found',404))
  })
  app.use((err, req, res, next)=>{
-     if(!err.message){
+    console.log(err); 
+    if(!err.message){
          err.message='somthing went wrong :('
      }
-     res.render('error.ejs',{err});
+     res.json({
+        message:err.message
+     })
  })
  

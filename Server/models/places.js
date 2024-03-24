@@ -31,4 +31,4 @@ placesSchema.post('findOneAndDelete',async (place) => {
 })
 let places=mongoose.model('places',placesSchema);
 
-module.exports=;
+module.exports=places;

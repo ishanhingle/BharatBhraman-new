@@ -8,26 +8,24 @@ const {placeSchema,reviewSchema}=require('../schema')
 
 module.exports.isLoggedIn=(req,res,next)=>{
     if(!req.isAuthenticated()){
-        req.session.returnTo = req.originalUrl;
-       req.flash('error','Please login first');
-       res.redirect('/user/login')
+        res.status(401).json({
+            success:false,
+            message:"User Not Logged in",
+        })
     }
     else{
         next();
     }
 }
-module.exports.storeReturnTo = (req, res, next) => {
-    if (req.session.returnTo) {
-        res.locals.returnTo = req.session.returnTo;
-    }
-    next();
-}
+
 module.exports.isAuthor=async (req,rs,next)=>{
     const{id}=req.params;
     const place=await Places.findById(id);
     if(!place.author.equals(req.user._id)){
-        req.flash('error','Sorry you are not allowed to do so')
-        res.redirect('/places');
+        res.status(401).json({
+            success:false,
+            message:"User unauthorized",
+        })
     }
     else{
         next();
@@ -37,8 +35,10 @@ module.exports.isReviewAuthor=async (req,rs,next)=>{
     const{review_id}=req.params;
     const review=await Reviews.findById(review_id);
     if(!review.author.equals(req.user._id)){
-        req.flash('error','Sorry you are not allowed to do so')
-        res.redirect('/places');
+        res.status(401).json({
+            success:false,
+            message:"User unauthorized",
+        })
     }
     else{
         next();

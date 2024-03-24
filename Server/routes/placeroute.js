@@ -17,15 +17,11 @@ const{storage}=require('../cloudinary/index')
 const multer  = require('multer')
 const upload = multer({ storage })
 
-router.get('/',catchAsync(places.renderIndex));
+router.get('/',catchAsync(places.getPlaces));
 
-router.route('/new')
-  .get(isLoggedIn,places.renderNewform)
-  .post(isLoggedIn,upload.array('place[image]'),validatePlaces,catchAsync(places.addNewPlace));
+router.post('/new',isLoggedIn,upload.array('place[image]'),validatePlaces,catchAsync(places.addNewPlace));
 
-router.route('/edit/:id')
-.get(catchAsync(places.renderEditForm))
-.put(upload.array('place[image]'),catchAsync(places.updatePlace));
+router.put('/edit/:id',upload.array('place[image]'),catchAsync(places.updatePlace));
 
 router.delete('/delete/:id',isLoggedIn,isAuthor,catchAsync(places.deletePlace));
 

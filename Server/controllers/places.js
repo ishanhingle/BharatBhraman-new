@@ -2,12 +2,11 @@ const { array } = require('joi');
 const Places=require('../models/places');
 const {cloudinary}=require('../cloudinary/index')
 
-module.exports.renderIndex=async (req,res,next)=>{
+module.exports.getPlaces=async (req,res,next)=>{
     const places= await Places.find({});
-    res.render('places/index',{places})}
-
-module.exports.renderNewform=(req,res)=>{
-    res.render('places/new')
+    res.status(200).json({
+        places,
+    })
 }
 
 module.exports.addNewPlace=async(req,res,next)=>{
@@ -19,19 +18,10 @@ module.exports.addNewPlace=async(req,res,next)=>{
    newplace.lon= address[0].lon;
    newplace.author=req.user._id;
    await newplace.save();
-   req.flash('success','new place added successfully')
-   console.log(newplace);
-   res.redirect("/places")
-}
-
-module.exports.renderEditForm=async(req,res)=>{
-    const{id}=req.params
-    const place=await Places.findById(id)
-    if (!place) {
-        req.flash('error', 'Cannot find that place!');
-         res.redirect('/places');
-    }
-    res.render('places/edit',{place});
+   res.status(200).json({
+    success:true,
+    message:"New Place Created Successfully",
+})
 }
 
 module.exports.updatePlace=async(req,res,next)=>{
@@ -50,16 +40,19 @@ module.exports.updatePlace=async(req,res,next)=>{
     updated_place.lat= address[0].lat;
     updated_place.lon= address[0].lon;
     await updated_place.save();
-    req.flash('success','Informatation Updated!!');
-    console.log(updated_place);
-    res.redirect('/places')
+    res.status(200).json({
+        success:true,
+        message:"Place updated successfully",
+    })
 }
 
 module.exports.deletePlace=async(req,res,next)=>{
     const{id}=req.params
     await Places.findByIdAndDelete(id) ;
-    req.flash('success','Place Deleted!');
-    res.redirect('/places')
+    res.status(200).json({
+        success:true,
+        message:"Place deleted successfully",
+    })
 }
 
 module.exports.showPlace=async (req,res,next)=>{
@@ -71,10 +64,11 @@ module.exports.showPlace=async (req,res,next)=>{
         }
     }).populate('author');
     if (!place) {
-        req.flash('error', 'Cannot find that place!');
-        res.redirect('/places');
-        return;
+        res.status(404).json({
+            message:"place not found",
+        })
     }
-    console.log(place);
-    res.render('places/show',{place})
+    res.status(200).json({
+        place,
+    })
 }

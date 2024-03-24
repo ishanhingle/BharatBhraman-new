@@ -1,9 +1,5 @@
 const Users=require('../models/Users')
 
-module.exports.renderRegister=(req, res) => {
-    res.render('user/register')
-}
-
 module.exports.register=async (req, res, next) => {
     try{
         const { username, email, password } = req.body;
@@ -14,25 +10,22 @@ module.exports.register=async (req, res, next) => {
             next(err)
         }
         else{
-            req.flash('success', 'Welcome!!');
-            res.redirect('/places');
+            res.status(200).json({
+                success:true,
+                message:"user registerd successfully",
+            })
         }
     })
     }
     catch(e){
-        req.flash('error',e.message);
-        res.redirect('register');
+        next(e);
     }
 }
 
-module.exports.renderLogin=(req,res,next)=>{
-    res.render('user/login');
-}
-
 module.exports.login=(req,res)=>{
-    req.flash('success','Welcome Back!');
-    const redirectUrl = res.locals.returnTo || '/places';
-    res.redirect(redirectUrl);
+    res.json({
+        message:"user logged in successfully",
+    })
 }
 
 module.exports.logout=(req,res,next)=>{
@@ -40,8 +33,9 @@ module.exports.logout=(req,res,next)=>{
         if(err){
             next(err);
         }else{
-            req.flash('success','Logged out');
-            res.redirect('/places');
+            res.status(200).json({
+                message:"logged out succesfully",
+            })
         }
     })
 }

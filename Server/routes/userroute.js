@@ -11,11 +11,8 @@ const router = express.Router();
 
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
-router.get('/register', users.renderRegister);
-router.post('/register',catchAsync(users.register))
-router.route('/login')
-.get(users.renderLogin)
-.post(storeReturnTo,passport.authenticate('local',{failureFlash:true,failureRedirect:'login'}),users.login)
 
-router.get('/logout',users.logout)
+router.post('/register',catchAsync(users.register))
+router.post('/login',passport.authenticate('local'),users.login)
+
 module.exports = router;

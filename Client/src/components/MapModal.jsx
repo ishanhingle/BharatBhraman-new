@@ -19,13 +19,13 @@ function MapModal({places}) {
         <button
           type="button"
           onClick={openModal}
-          className="rounded-md  bg-black/10 px-4 py-2 text-xl font-medium text-black hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+          className="rounded-md  bg-black/10 px-4 py-2 lg:text-xl font-medium text-black hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
         >
           MAP VIEW 📌
         </button>
       </div>
 
-      <Transition appear show={isOpen} as={Fragment} className="fixed inset-0 flex items-center justify-center">
+      <Transition appear show={isOpen} as={Fragment} className="fixed inset-0 flex items-center justify-center h-4/5 w-full">
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -55,9 +55,9 @@ function MapModal({places}) {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Payment successful
+                    MAP VIEW
                   </Dialog.Title>
-                  <div className="mt-2">
+                  <div className="flex justify-center items-center mt-2 h-100">
                     <GlobalMap places={places}/>
                   </div>
 
@@ -67,7 +67,7 @@ function MapModal({places}) {
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      Got it, thanks!
+                      CLOSE
                     </button>
                   </div>
                 </Dialog.Panel>

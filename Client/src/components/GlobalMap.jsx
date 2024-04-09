@@ -17,9 +17,18 @@ function GlobalMap({ places }) {
             zoom: zoom
         })
        places.forEach(element => {
-        console.log(element);
-        const marker = new maptilersdk.Marker()
+        const viewDetailsUrl=`/place/${element._id}`
+        const el=document.createElement("div");
+        el.className="custom-marker h-12 w-12 rounded-full bg-cover "
+        el.style.backgroundImage =
+        `url(${element.image[0].url})`;
+        const marker = new maptilersdk.Marker({element:el})
         .setLngLat([element.lon,element.lat])
+        .setPopup(new maptilersdk.Popup()
+                  .setHTML(`<div><h1 style="font-size:15px;">${element.name}</h1>
+                  <h1>${element.location}</h1>
+                  <a class="hover:scale-105 hover:text-zinc-200 delay-75" href="${viewDetailsUrl}">View Details</a>
+                  </div>`))
         .addTo(map.current);
        });
 

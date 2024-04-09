@@ -1,6 +1,5 @@
 import React, { useEffect,useState } from 'react'
 import { useParams } from 'react-router-dom'
-import PlaceMap from '../components/PlaceMap';
 import BACKEND_URL from '../config';
 import axios from 'axios';
 
@@ -19,7 +18,7 @@ function Place() {
     },[id])
     return (
     <div className='h-72 w-64 '>
-    
+
     </div>
   )
 }

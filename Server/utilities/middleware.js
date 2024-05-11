@@ -55,7 +55,7 @@ module.exports.validatePlaces=(req,res,next)=>{
     }
 }
 module.exports.validateReviews=(req,res,next)=>{
-     req.body.review.rating=parseInt(req.body.review.rating);
+     req.body.rating=parseInt(req.body.rating);
     const{error}=reviewSchema.validate(req.body);
     if(error){
         const msg=error.details.map(el=>el.message).join(',');

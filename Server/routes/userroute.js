@@ -14,5 +14,5 @@ router.use(express.json());
 
 router.post('/register',catchAsync(users.register))
 router.post('/login',passport.authenticate('local'),users.login)
-
+router.get('/logout',users.logout);
 module.exports = router;

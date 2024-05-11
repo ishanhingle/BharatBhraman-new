@@ -27,7 +27,7 @@ function GlobalMap({ places }) {
         .setPopup(new maptilersdk.Popup()
                   .setHTML(`<div><h1 style="font-size:15px;">${element.name}</h1>
                   <h1>${element.location}</h1>
-                  <a class="hover:scale-105 hover:text-zinc-200 delay-75" href="${viewDetailsUrl}">View Details</a>
+                  <a class="hover:scale-105 hover:text-zinc-200 delay-75" href="${viewDetailsUrl}" style="text-decoration:underline;">View Details</a>
                   </div>`))
         .addTo(map.current);
        });

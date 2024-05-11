@@ -4,8 +4,9 @@ const Users=require('../models/Users')
 
 module.exports.addReview=async(req,res)=>{
     const{id}=req.params
+    console.log(req.body);
     const place=await Places.findById(id);
-    const review=new Reviews(req.body.review)
+    const review=new Reviews(req.body)
     review.rating=parseInt(review.rating);
     review.author=req.user._id;
     place.review.push(review);

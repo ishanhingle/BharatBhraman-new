@@ -31,7 +31,7 @@ function Explore() {
         : 
         ( 
           <div className='flex flex-wrap justify-center gap-6 mt-12  lg:gap-9'>
-           {places.map(place=><PlaceCard place={place}></PlaceCard>)}
+           {places.map(place=><PlaceCard place={place} key={place._id}></PlaceCard>)}
         </div>
         )}
       </div>

@@ -10,10 +10,12 @@ module.exports.getPlaces=async (req,res,next)=>{
 }
 
 module.exports.addNewPlace=async(req,res,next)=>{
-   const newplace=new Places(req.body.place);
+   const newplace=new Places(req.body);
    newplace.image=req.files.map(i=>({url:i.path,filename:i.filename}))
-   const addressResponse= await fetch(`https://geocode.maps.co/search?q=${req.body.place.location}`);
+   const location=req.body.location.split(' ')[0];
+   const addressResponse= await fetch(`https://geocode.maps.co/search?q=${req.body.location}`);
    const address=await addressResponse.json();
+   console.log(address);
    newplace.lat= address[0].lat;
    newplace.lon= address[0].lon;
    newplace.author=req.user._id;

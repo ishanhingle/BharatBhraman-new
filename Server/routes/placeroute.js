@@ -19,9 +19,9 @@ const upload = multer({ storage })
 
 router.get('/',catchAsync(places.getPlaces));
 
-router.post('/new',isLoggedIn,upload.array('place[image]'),validatePlaces,catchAsync(places.addNewPlace));
+router.post('/new',isLoggedIn,upload.array('image'),validatePlaces,catchAsync(places.addNewPlace));
 
-router.put('/edit/:id',upload.array('place[image]'),catchAsync(places.updatePlace));
+router.put('/edit/:id',upload.array('image'),catchAsync(places.updatePlace));
 
 router.delete('/delete/:id',isLoggedIn,isAuthor,catchAsync(places.deletePlace));
 

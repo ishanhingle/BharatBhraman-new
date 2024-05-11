@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AddPlaceCard from '../components/AddPlaceCard'
-
+import { useRecoilValue } from 'recoil'
+import { userAtom } from '../store/user'
+import {toast} from 'react-toastify'
+import { useNavigate } from 'react-router-dom';
 function AddPlace() {
+  const user=useRecoilValue(userAtom);
+  const navigate=useNavigate();
+  useEffect(()=>{
+    if(user==null){
+      toast("Please Login First")
+      navigate('/login');
+  }
+  },[user]);
   return (
     <div className=" flex w-screen h-screen ">
     <div className="hidden h-screen w-full lg:flex lg:flex-col justify-center items-center border-solid border-r-black border-2 bg-white">

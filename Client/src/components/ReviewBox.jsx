@@ -5,7 +5,7 @@ import { Rating } from 'react-simple-star-rating';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import BACKEND_URL from '../config';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function ReviewBox({place}) { 
   const user=useRecoilValue(userAtom);
     const [rating,setRating]=useState(0);
@@ -61,6 +61,14 @@ function ReviewBox({place}) {
           </div>
           <button className='p-2 bg-slate-100 mt-3 rounded-2xl' onClick={handleSubmit}>Submit</button>
       </div>}
+      {
+        user==null && 
+        <Link to={'/login'}>
+        <div className='text-center m-6 hover:underline '>
+           SIGN TO ADD REVIEW
+        </div>
+        </Link>
+      }
     </div>
   )
 }

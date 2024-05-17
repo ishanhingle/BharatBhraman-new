@@ -4,12 +4,12 @@ import { ToastContainer } from 'react-toastify'
 
 function Home() {
     return (
-        <div className='h-screen w-screen bg-cover bg-left-top bg-no-repeat backdrop-blur-md' style={{backgroundImage:`URL('https://img.myloview.com/posters/incredible-india-background-with-indian-monuments-700-179338332.jpg')`,height:`90vh`}}>
-            <div className='p-12 text-3xl md:text-5xl md:w-4/5 lg:text-7xl lg:w-3/5 font-black text-gray-700 italic'>
+        <div className='h-screen w-screen bg-cover flex flex-col justify-center items-center p-10 bg-center bg-blend-darken bg-gray-500' style={{backgroundImage:`URL('https://etimg.etb2bimg.com/photo/92380696.cms')`,height:`87vh`,}}>
+            <div className='md:p-12 text-2xl md:text-4xl lg:text-7xl  font-black text-white italic text-center' style={{filter:`brightness(1.75)`}}>
             From the Himalayan peaks to the sun-kissed shores, Bharat Bhraman beckons with its diverse roars.
             </div>
             <div className='flex justify-center m-4'>
-                  <button className='p-5 text-3xl font-bold bg-gray-200 hover:bg-slate-50 hover:scale-110 rounded-3xl'>
+                  <button className='p-3 lg:p-5 text-l md:p-5 md:text-3xl font-bold bg-gray-200 hover:bg-slate-50 hover:scale-110 rounded-3xl'>
                     <Link to={'/explore'}>
                         GET STARTED
                     </Link>

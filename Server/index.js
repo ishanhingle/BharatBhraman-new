@@ -45,11 +45,11 @@ const store = MongoStore.create({
 app.use(cors(corsOptions));
 const sessionConfig={
     secret:'ishanisbest',
-    resave:false,
+    resave:true,
     saveUninitialized:true,
-    Cookie:{
-        expires:Date.now()+1000*60*60*24*7,
-        maxAge:1000*60*60*24*7
+    cookie:{
+        maxAge:1000*60*60*24*7,
+        secure:false,
     },
     store,
 }

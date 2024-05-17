@@ -29,8 +29,9 @@ function LoginCard() {
         })
         .catch(err => {
                 toast("invalid username or password");
+                setLoading(false);
             });
-       setLoading(false);
+       
     }
     return (
         <>

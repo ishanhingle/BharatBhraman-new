@@ -7,7 +7,7 @@
  const path=require('path');
  const methodOverride=require('method-override');
  const joi=require('joi')
- const session=require('express-session');
+ const session=require('cookie-session')
  const passport=require('passport');
  const localStrategy=require('passport-local');
  const passportLocalMongoose=require('passport-local-mongoose');

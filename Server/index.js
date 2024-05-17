@@ -72,7 +72,9 @@ const PORT=process.env.PORT || 3000;
 app.listen(PORT,()=>{
     console.log("server started");
 })
-
+app.get('/',(req,res)=>{
+    res.send("hello ji");
+})
 app.use('/places',placeroute);
 app.use('/review',reviewroute)
 app.use('/user',userroute);

@@ -31,7 +31,7 @@ const DBurl=process.env.DBurl
 mongoose.connect(DBurl).then(console.log("connected"));
 const app=express();
 const corsOptions ={
-   origin:'http://localhost:5173', 
+   origin:'https://bharatbhraman-client.onrender.com/', 
    credentials:true,            //access-control-allow-credentials:true
    optionSuccessStatus:200
 }

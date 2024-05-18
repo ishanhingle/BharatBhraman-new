@@ -12,8 +12,9 @@ module.exports.getPlaces=async (req,res,next)=>{
 module.exports.addNewPlace=async(req,res,next)=>{
    const newplace=new Places(req.body);
    newplace.image=req.files.map(i=>({url:i.path,filename:i.filename}))
-   const location=req.body.location.split(' ')[0];
-   const addressResponse= await fetch(`https://geocode.maps.co/search?q=${req.body.location}`);
+   const location=req.body.location.replace(/[, ]+/g, '+')
+   const url=`https://geocode.maps.co/search?q=${location}&api_key=66485a88c9729438154120okmf1a9f0`
+   const addressResponse= await fetch(url);
    const address=await addressResponse.json();
    console.log(address);
    newplace.lat= address[0].lat;

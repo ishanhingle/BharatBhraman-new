@@ -49,8 +49,9 @@ const sessionConfig={
     saveUninitialized:true,
     cookie:{
         maxAge:1000*60*60*24*7,
-        secure:false,
+        secure:true,
         store,
+        sameSite:"none",
     },
     store,
     proxy:true,

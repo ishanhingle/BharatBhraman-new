@@ -12,9 +12,10 @@ function Explore() {
   const [loading,setLoading]=useState(true);
   useEffect(()=>{
     axios.get(BACKEND_URL+"places/")
-    .then(res=>{setPlaces(res.data.places)})
+    .then(res=>{setPlaces(res.data.places)
+      setLoading(false);
+    })
     .catch((err)=>console.log(err));
-    setLoading(false);
   },[])
   return (
     <div className='min-h-screen w-screen '>

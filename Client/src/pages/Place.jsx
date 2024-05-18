@@ -69,7 +69,7 @@ function Place() {
          </div> 
       </div>
       { 
-        (user._id===place.author._id) &&
+        (user!=null && user._id===place.author._id) &&
         <div className='w-screen bg-gray-100 flex justify-center m-4'>
         <button className='text-2xl font-semibold bg-red-500 text-white p-2 hover:bg-red-800 ' onClick={deletePlace}>Delete Place</button>
       </div>

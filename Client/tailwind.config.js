@@ -12,6 +12,10 @@ export default {
       },
       width: {
         '100': '32rem',
+      },
+      backdropBrightness: {
+        25: '.25',
+        175: '1.75',
       }
     },
   },

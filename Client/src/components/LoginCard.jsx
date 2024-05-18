@@ -16,6 +16,7 @@ function LoginCard() {
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         setLoading(true);
+        console.log(loading);
         axios({
             url: BACKEND_URL + "user/login/",
             method: "POST",
@@ -26,10 +27,11 @@ function LoginCard() {
             toast("Logged in Successfully!")
             navigate('/explore');
         })
-            .catch(err => {
+        .catch(err => {
                 toast("invalid username or password");
+                setLoading(false);
             });
-       setLoading(false);
+       
     }
     return (
         <>

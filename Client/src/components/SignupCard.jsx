@@ -25,11 +25,13 @@ function SignupCard() {
             setUser(res.data.user);
             toast("Registration Successfull!")
             navigate('/explore');
+            setLoading(false);
         })
             .catch(err => {
                 toast(err.message);
+                setLoading(false);
             });
-       setLoading(false);
+       
     }
     return (
         <>

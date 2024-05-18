@@ -50,8 +50,10 @@ const sessionConfig={
     cookie:{
         maxAge:1000*60*60*24*7,
         secure:false,
+        store,
     },
     store,
+    proxy:true,
 }
 
 app.use(session(sessionConfig))
